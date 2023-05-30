@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div ng-app="Demo">
+    <div ng-controller="searchCtrl">
+      <input type="text" placeholder="Enter text to search..." ng-model="searchText">
+      <input type="text" placeholder="Search by categories...">
+
+      <table class="table">
+        <tr style="background-color: bisque">
+          <th>Name</th>
+          <th>Content</th>
+        </tr>
+
+        <tr ng-repeat="employee in employees | filter: searchText">
+          <td>{{employee.name}}</td>
+          <td>{{employee.content}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    let myApp = angular.module('Demo', []);
+
+    myApp.controller('searchCtrl', ($scope) => {
+      $scope.employees = [
+        {name: 'ASP.NET MVC', content: 'content1'},
+        {name: 'Node.js', content: 'content2'},
+        {name: 'React.js', content: 'content3'},
+        {name: 'Typescript', content: 'content4'}
+      ];
+      $scope.searchText = '';
+    })
+  </script>
+</body>
+</html>
